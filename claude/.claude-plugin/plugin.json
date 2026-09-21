@@ -1,0 +1,29 @@
+{
+  "name": "linkping",
+  "version": "0.1.0",
+  "description": "Work a LinkPing backlink plan from Claude Code: today's directory submissions, the copy each form needs, outreach drafts and listing checks.",
+  "author": {
+    "name": "LinkPing"
+  },
+  "keywords": [
+    "linkping",
+    "backlinks",
+    "directory",
+    "submission",
+    "seo",
+    "outreach",
+    "claude-code",
+    "mcp"
+  ],
+  "mcpServers": {
+    "linkping": {
+      "type": "http",
+      "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "headers": {
+        "x-linkping-surface": "claude_code"
+      }
+    }
+  },
+  "skills": "./skills/"
+}

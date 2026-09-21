@@ -1,0 +1,26 @@
+{
+  "name": "linkping",
+  "owner": {
+    "name": "LinkPing"
+  },
+  "metadata": {
+    "description": "The LinkPing plugin for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "linkping",
+      "source": "./claude",
+      "description": "Work a LinkPing backlink plan from Claude Code: today's directory submissions, the copy each form needs, outreach drafts and listing checks.",
+      "category": "productivity",
+      "keywords": [
+        "linkping",
+        "backlinks",
+        "directory",
+        "submission",
+        "seo",
+        "outreach",
+        "mcp"
+      ]
+    }
+  ]
+}
