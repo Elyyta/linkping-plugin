@@ -9,27 +9,10 @@ description: >-
   linkping-basics.
 ---
 
-## Execution contract
-
-Inference uses this user's agent session. Never ask the hosted workbench to run a model.
-First check actual browser access (open and inspect a page) and search access. Report the
-result with `check_agent`, including host, interactive/scheduled mode, and an actionable
-message if blocked. Renew the check-in while working. Authorization alone is not readiness.
-
-When running today's plan, use `prepare_today_plan` if it does not exist. Claim each task
-with `claim_plan_task`, retain its `claimToken`, and renew it every few minutes using
-`checkpoint_plan_task`. A conflict or expired claim means stop that task. Before an external
-submission, checkpoint `phase: submitting` with the destination URL. Include the claim token
-in `set_submission_status` and `report_plan_task`. Never retry a submission whose outcome is
-uncertain: the human must check the destination and release it from the workbench first.
-Only the listing checker can promote a backlink to `live`.
-
-Email delivery is approved in the workbench. Save drafts, then use `queue_outreach` only to
-get a review link. It sends and queues nothing. `send_reply` is not available through MCP.
-
-
-
 # Outreach
+
+Load `linkping-basics` first: its execution contract binds this work too and is not
+restated here.
 
 Two rules here are absolute, and both exist because a wrong email cannot be recalled:
 

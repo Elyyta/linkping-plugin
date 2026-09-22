@@ -11,6 +11,9 @@ description: >-
 
 # Known errors
 
+Load `linkping-basics` first. Treat the active MCP tool schema and the returned structured
+error as authoritative: they describe this build, and a remembered payload shape does not.
+
 Two questions, in order: **is this retryable, or is it a stop?** and **what exactly do I
 write down?** Never a third one — do not open the workbench's source to find out why a
 route answered the way it did.
@@ -56,7 +59,7 @@ These look like bugs in your browser tool and are not. Do not burn four retries 
 
 | Error | What it means | Do |
 | --- | --- | --- |
-| tools missing / not connected | the connection was never finished — almost never a broken install | tell the user to run `npx linkping init` (or `linkping status`), and stop |
+| tools missing / not connected | the connection was never finished — almost never a broken install | `linkping-basics` › "If the LinkPing tools are not there" has this host's ladder; walk it, then stop |
 | `not_implemented_yet` | that route is not in this build of the workbench | say which tool, do not work around it |
 | `501 discovery_unavailable` | needs the local Claude Code login; only works on a workbench running on the user's own machine | say so; the deployed app cannot do it |
 | `400 listing_url_required` | `submitted` without a listing URL or a note | supply the URL, or a note saying why there is none |
