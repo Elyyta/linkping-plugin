@@ -1,0 +1,4 @@
+interface:
+  display_name: "LinkPing · 外联"
+  short_description: "找线索、选邮箱、起草换链邮件；只入队，绝不代发"
+  default_prompt: "用 LinkPing 跑今天的计划里的外联任务，草稿写好等我过目。"

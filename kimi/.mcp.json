@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "linkping": {
+      "transport": "http",
+      "auth": "oauth",
+      "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "http_headers": {
+        "x-linkping-surface": "kimi_work"
+      },
+      "note": "LinkPing remote MCP endpoint. OAuth 2.1 with dynamic client registration and PKCE; the server derives the member from the token.",
+      "authorization": "OAuth 2.0 with dynamic client registration",
+      "riskLevel": "caution",
+      "riskNote": "Hosted connector. The agent fills and submits third-party directory forms with the copy stored in the user's LinkPing workbench, and drafts outreach email that is sent only after the user approves it in the workbench."
+    }
+  }
+}

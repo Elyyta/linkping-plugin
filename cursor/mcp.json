@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "linkping": {
+      "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "headers": {
+        "x-linkping-surface": "cursor"
+      }
+    }
+  }
+}

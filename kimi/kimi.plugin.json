@@ -1,0 +1,46 @@
+{
+  "$schema": "https://catalog.msh.team/misc/kimi.plugin.schema.json",
+  "name": "linkping-kimi-work",
+  "version": "0.1.0",
+  "description": "LinkPing plugin for Kimi Work: work today's backlink plan — directory submissions, form copy, outreach drafts and listing checks — against the LinkPing workbench.",
+  "author": "LinkPing",
+  "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+  "keywords": [
+    "linkping",
+    "backlinks",
+    "directory",
+    "submission",
+    "seo",
+    "outreach",
+    "mcp",
+    "kimi-work"
+  ],
+  "skillInstructions": "MANDATORY: Before the first LinkPing MCP tool call, load and read the entire linkping-basics skill. Its three delivery rules bind: submit forms yourself and hand back only for the listed blockers; email stays a draft until reviewed in the workbench; never write a listing as live — the crawler does. OAuth belongs to the host; never print tokens.",
+  "interface": {
+    "displayName": "LinkPing",
+    "shortDescription": "Work a LinkPing backlink plan from Kimi Work",
+    "longDescription": "Workflow skills and MCP server configuration for LinkPing: today's directory submissions in order, the copy each directory form needs, badge-gated listings, outreach drafts that stay drafts until reviewed, and listing checks. Nothing is marked live by the agent; the workbench's crawler does that.",
+    "developerName": "LinkPing",
+    "category": "PRODUCTIVITY",
+    "capabilities": [
+      "Read",
+      "Write",
+      "OAuth"
+    ],
+    "websiteURL": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+    "iconUrl": "data:image/png;base64,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",
+    "hostKind": "hosted"
+  },
+  "skills": "./skills/",
+  "mcpServers": {
+    "linkping": {
+      "transport": "http",
+      "auth": "oauth",
+      "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "headers": {
+        "x-linkping-surface": "kimi_work"
+      }
+    }
+  }
+}

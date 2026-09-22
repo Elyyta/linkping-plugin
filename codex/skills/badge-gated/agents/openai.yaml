@@ -1,0 +1,4 @@
+interface:
+  display_name: "LinkPing · 徽章门槛"
+  short_description: "免费收录要挂对方徽章时，先判断值不值，再决定怎么做"
+  default_prompt: "用 LinkPing 看今天的计划里哪些目录要挂徽章，值不值得做。"

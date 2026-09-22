@@ -1,0 +1,42 @@
+{
+  "name": "linkping",
+  "version": "0.1.0",
+  "description": "Work a LinkPing backlink plan from Codex: directory submissions, the copy each form needs, outreach drafts and listing checks.",
+  "author": {
+    "name": "LinkPing"
+  },
+  "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+  "repository": "https://github.com/Elyyta/linkping-plugin.git",
+  "keywords": [
+    "linkping",
+    "backlinks",
+    "directory",
+    "submission",
+    "seo",
+    "outreach",
+    "mcp",
+    "codex"
+  ],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "LinkPing",
+    "shortDescription": "Work a LinkPing backlink plan from Codex",
+    "longDescription": "Workflow skills and MCP server configuration for LinkPing: today's directory submissions in order, the copy each directory form needs, badge-gated listings, outreach drafts that stay drafts until reviewed, and listing checks. Nothing is marked live by the agent; the workbench's crawler does that.",
+    "developerName": "LinkPing",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+    "defaultPrompt": [
+      "用 LinkPing 准备今天的外链计划",
+      "用 LinkPing 把我的产品提交到今天计划里的目录站",
+      "LinkPing 里今天有什么要做的"
+    ],
+    "brandColor": "#1c1917",
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png"
+  }
+}

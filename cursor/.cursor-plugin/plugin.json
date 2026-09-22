@@ -1,0 +1,24 @@
+{
+  "name": "linkping",
+  "version": "0.1.0",
+  "description": "Work a LinkPing backlink plan from Cursor or Grok Bot: directory submissions, the copy each form needs, outreach drafts and listing checks.",
+  "author": {
+    "name": "LinkPing"
+  },
+  "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+  "repository": "https://github.com/Elyyta/linkping-plugin.git",
+  "keywords": [
+    "linkping",
+    "backlinks",
+    "directory",
+    "submission",
+    "seo",
+    "outreach",
+    "mcp",
+    "cursor",
+    "grok-bot"
+  ],
+  "logo": "assets/logo.png",
+  "skills": "skills/",
+  "mcpServers": "mcp.json"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "LinkPing · 报错处理"
+  short_description: "被拦、打不开、表单不收：判断重试还是交回给人"
+  default_prompt: "用 LinkPing 跑今天的计划，卡住的那几条按报错处理的规矩交回给我。"

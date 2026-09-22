@@ -1,0 +1,4 @@
+interface:
+  display_name: "LinkPing · 目录提交"
+  short_description: "打开目录站的表单，用 LinkPing 渲染好的文案填完并提交"
+  default_prompt: "用 LinkPing 跑今天的计划里的提交任务。"
