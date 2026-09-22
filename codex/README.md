@@ -5,7 +5,7 @@ and the LinkPing skills (each with Codex's `agents/openai.yaml`).
 
 ```sh
 codex plugin marketplace add Elyyta/linkping-plugin@staging
-codex plugin add linkping
+codex plugin add linkping@linkping
 codex mcp login linkping
 ```
 
