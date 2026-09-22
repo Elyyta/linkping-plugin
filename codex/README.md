@@ -4,7 +4,7 @@ Codex plugin package: `.codex-plugin/plugin.json`, the hosted MCP connection in 
 and the LinkPing skills (each with Codex's `agents/openai.yaml`).
 
 ```sh
-codex plugin marketplace add https://github.com/Elyyta/linkping-plugin.git
+codex plugin marketplace add Elyyta/linkping-plugin@staging
 codex plugin add linkping
 codex mcp login linkping
 ```
