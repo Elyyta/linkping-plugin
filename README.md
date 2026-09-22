@@ -7,7 +7,7 @@ tell the agent how to work a backlink plan. No application source, no data, no c
 | Host | Package | Install |
 | --- | --- | --- |
 | Claude Code | `claude/` | `claude plugin marketplace add https://github.com/Elyyta/linkping-plugin.git#staging` then `claude plugin install linkping@linkping` |
-| Codex | `codex/` | `codex plugin marketplace add Elyyta/linkping-plugin@staging` then `codex plugin add linkping`, `codex mcp login linkping` |
+| Codex | `codex/` | `codex plugin marketplace add Elyyta/linkping-plugin@staging` then `codex plugin add linkping@linkping`, `codex mcp login linkping` |
 | Cursor, Grok Bot | `cursor/` | Plugins screen → Add → Authorize ([details](./cursor/README.md)) |
 | Kimi Work | `kimi/` | Import the package, Login on the connector card ([details](./kimi/README.md)) |
 
