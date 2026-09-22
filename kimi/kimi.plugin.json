@@ -5,6 +5,7 @@
   "description": "LinkPing plugin for Kimi Work: work today's backlink plan — directory submissions, form copy, outreach drafts and listing checks — against the LinkPing workbench.",
   "author": "LinkPing",
   "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+  "license": "MIT",
   "keywords": [
     "linkping",
     "backlinks",
@@ -39,6 +40,7 @@
       "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
       "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
       "headers": {
+        "x-linkping-client": "kimi_work",
         "x-linkping-surface": "kimi_work"
       }
     }

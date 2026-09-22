@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "description": "Work a LinkPing backlink plan from Claude Code: today's directory submissions, the copy each form needs, outreach drafts and listing checks.",
   "author": {
-    "name": "LinkPing"
+    "name": "LinkPing",
+    "url": "https://github.com/Elyyta/linkping-plugin"
   },
+  "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+  "repository": "https://github.com/Elyyta/linkping-plugin.git",
+  "license": "MIT",
   "keywords": [
     "linkping",
     "backlinks",
@@ -21,6 +25,7 @@
       "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
       "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
       "headers": {
+        "x-linkping-client": "claude_code",
         "x-linkping-surface": "claude_code"
       }
     }

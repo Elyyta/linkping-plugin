@@ -6,6 +6,7 @@
       "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
       "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
       "http_headers": {
+        "x-linkping-client": "kimi_work",
         "x-linkping-surface": "kimi_work"
       },
       "note": "LinkPing remote MCP endpoint. OAuth 2.1 with dynamic client registration and PKCE; the server derives the member from the token.",

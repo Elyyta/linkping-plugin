@@ -2,6 +2,7 @@
   "mcpServers": {
     "linkping": {
       "http_headers": {
+        "x-linkping-client": "codex",
         "x-linkping-surface": "codex"
       },
       "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",

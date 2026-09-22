@@ -1,7 +1,8 @@
 {
   "name": "linkping",
   "owner": {
-    "name": "LinkPing"
+    "name": "LinkPing",
+    "url": "https://github.com/Elyyta/linkping-plugin"
   },
   "metadata": {
     "description": "The LinkPing plugin for Claude Code."
@@ -12,6 +13,12 @@
       "source": "./claude",
       "description": "Work a LinkPing backlink plan from Claude Code: today's directory submissions, the copy each form needs, outreach drafts and listing checks.",
       "category": "productivity",
+      "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+      "author": {
+        "name": "LinkPing",
+        "url": "https://github.com/Elyyta/linkping-plugin"
+      },
+      "license": "MIT",
       "keywords": [
         "linkping",
         "backlinks",

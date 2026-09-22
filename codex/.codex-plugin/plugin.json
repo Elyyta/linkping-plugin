@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "description": "Work a LinkPing backlink plan from Codex: directory submissions, the copy each form needs, outreach drafts and listing checks.",
   "author": {
-    "name": "LinkPing"
+    "name": "LinkPing",
+    "url": "https://github.com/Elyyta/linkping-plugin"
   },
   "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
   "repository": "https://github.com/Elyyta/linkping-plugin.git",
+  "license": "MIT",
   "keywords": [
     "linkping",
     "backlinks",
