@@ -141,10 +141,11 @@ HTTP API directly.
    - Codex: `codex mcp get linkping`
    - Cursor / Grok Bot: the Plugins screen lists LinkPing
    - Kimi Work: the LinkPing connector card
-2. Found but not authorized (`Connected` with no `Authenticated`, "needs authentication",
-   or a card offering Login / Authorize): OAuth never finished, which is not a broken
-   install. The USER approves in the browser — never on their behalf, and never print the
-   token. One login at a time.
+2. Found but not authorized (Claude Code prints `! Needs authentication`; a host card offers
+   Login / Authorize): OAuth never finished, which is not a broken install. `✔ Connected`
+   is the signed-in state — do not log in again, and never go looking for the token in the
+   host's credential files. The USER approves in the browser — never on their behalf, and
+   never print the token. One login at a time.
    - Claude Code: run the helper once, with a log path in this session's scratchpad or
      temp directory rather than a fixed shared file:
 
@@ -154,13 +155,15 @@ HTTP API directly.
 
      `claude mcp login` needs a terminal, so the helper runs it under a pty in the
      background and prints the log path it used. Watch that log for the line
-     `Authenticated with`: that line is success, `Connected` on its own is not.
+     `Authenticated with`: that is the login command's own success line (the host check
+     never prints it); afterwards `claude mcp get` shows `✔ Connected`.
    - Codex: `codex mcp login linkping`.
    - Cursor / Grok Bot: Authorize (or Authenticate) on the plugin; if it says "Waiting for
      authorization", Reopen and finish the browser flow.
    - Kimi Work: Login on the connector card.
-3. Authorized, but this conversation has no LinkPing tools: plugin tools are loaded when a
-   conversation starts, so this one will never see them. Ask the user to start a new
+3. `✔ Connected`, but this conversation has no LinkPing tools: this conversation started
+   before the install. Plugin tools are loaded when a conversation starts, so this one will
+   never see them, and no amount of logging in changes that. Ask the user to start a new
    conversation and resume there. Do not reinstall, do not re-authorize, and do not remove
    the plugin to refresh tools.
 
