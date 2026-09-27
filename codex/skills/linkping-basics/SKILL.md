@@ -44,10 +44,12 @@ says so in this turn.
 This copy is the Codex edition: the plugin owns the install and the token, and there is no
 LinkPing CLI here to re-run.
 
-Missing or erroring tools almost always mean the connection was never finished, not that
-the install is broken. Walk this ladder in order and stop at the first rung that explains
-what you see. Do not work around it by reading the repo (see Purpose) or by calling the
-HTTP API directly.
+Installation, OAuth authorization and current-conversation tool readiness are separate
+states. A visible skill does not prove that MCP tools are callable. Check the actual tool
+catalog first, using host tool discovery if available. When `list_products` is callable,
+verify it once (an empty list is success), reuse the result, and continue the original
+request in this conversation. For missing tools or a failed call, use the ladder below.
+Do not work around it by reading the repo (see Purpose) or calling the HTTP API directly.
 
 1. **Ask the host whether the server is registered.**
 
@@ -55,9 +57,12 @@ HTTP API directly.
    codex mcp get linkping
    ```
 
-   Not found means the plugin is not installed: say so and point the user at the
-   workbench's setup guide; do not install it yourself.
-2. **Registered but not authorized.** OAuth never finished, which is not a broken install:
+   Not found means registration is missing: follow the workbench's setup guide within
+   the user's requested scope. This command checks configuration, not authentication;
+   an absent authentication field is not proof of login.
+2. **Explicit authentication failure.** Complete the host's OAuth flow when available,
+   or use the CLI login below. Do not repeat a successful login just because tools are
+   missing, and do not treat a timeout or server error as an authentication failure:
 
    ```sh
    codex mcp login linkping
@@ -66,11 +71,22 @@ HTTP API directly.
    The user finishes the sign-in in their browser — never approve on their behalf, never
    print the token, one login at a time. Do not go looking for the token in the host's
    credential files, and do not register the server a second time.
-3. **Registered and authorized, but this conversation has no LinkPing tools.** Plugin tools
-   are loaded when a conversation starts, so a conversation that began before the install
-   will never see them, and no amount of logging in changes that. Ask the user to start a
-   new conversation and resume there. Do not reinstall, do not re-authorize, and do not
-   remove the plugin to refresh tools.
+3. **Missing tools after installation or authorization.** Use an available, documented
+   refresh/reconnect capability of the running host once, then check the tool catalog
+   again. Independent CLI installation or login may not refresh the desktop runtime.
+   A host that exposes an app-server bridge can offer `config/mcpServer/reload`,
+   `skills/list` with `forceReload: true`, and `mcpServerStatus/list` for the current
+   `threadId`. Check `runtimeStatus`, `authStatus`, `toolsError` and tools separately.
+   These are host RPC methods, not shell commands or LinkPing tools. Use only an exposed,
+   documented interface; do not invent a CLI command, probe private sockets, read
+   credentials or start another app-server to refresh the wrong process.
+4. **Verify or fall back.** A refresh acknowledgement is not readiness: call `list_products`
+   once when available, and continue the requested work here if it succeeds. Diagnose
+   failed calls by their actual error. Only if tools remain unavailable after the check
+   and one supported refresh attempt, or no supported refresh interface exists, offer a
+   new conversation with the original request and exact blocker. Do not promise it fixes
+   an unresolved authentication or server error. Create a new conversation only when the
+   user explicitly requests one. Do not reinstall or remove the plugin to refresh tools.
 
 Other shapes worth naming rather than retrying blindly: `not_implemented_yet` (that route is
 not in this build), `501 discovery_unavailable` (needs the local Claude Code login, so it

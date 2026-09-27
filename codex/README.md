@@ -18,8 +18,9 @@ codex plugin add linkping@linkping
 codex mcp login linkping
 ```
 
-Authentication is OAuth in the browser; no key or token lives in this repository. Start a
-new conversation after logging in so Codex discovers the tools. The MCP endpoint is
+Authentication is OAuth in the browser; no key or token lives in this repository. Prefer
+the running host's supported installation and OAuth flow when available; independent CLI
+installation/login may not refresh the desktop runtime. The MCP endpoint is
 `https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp`.
 
 ## Verify
@@ -28,7 +29,16 @@ new conversation after logging in so Codex discovers the tools. The MCP endpoint
 codex plugin list --marketplace linkping --json
 ```
 
-Then ask for something read-only, such as `列出我的产品` (`list_products`).
+Installation and configuration checks do not prove that the current conversation can
+call tools. Check its actual LinkPing tool catalog, read `linkping-basics`, and verify
+with a read-only `list_products` call (an empty list is also success). Continue the
+original request in the same conversation once verified.
+
+If tools are missing, use the running host's available, documented refresh/reconnect
+capability once, then check again. Do not repeat a successful login, reinstall, invent
+a refresh command or start another app-server. Only if that refresh is unavailable or
+the tools remain missing, use a new conversation as a fallback with the exact blocker
+and original request. A new conversation does not fix an unresolved OAuth/server error.
 
 ## Update
 
