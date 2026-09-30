@@ -77,7 +77,9 @@ Do not work around it by reading the repo (see Purpose) or calling the HTTP API 
    codex mcp login linkping
    ```
 
-   The user finishes the sign-in in their browser — never approve on their behalf, never
+   The command opens the sign-in page in the user's browser by itself: do not open the
+   authorization URL it prints again in the in-app browser or anywhere else, unless the
+   command says it could not open a browser. The user finishes the sign-in in their browser — never approve on their behalf, never
    print the token, one login at a time. Do not go looking for the token in the host's
    credential files, and do not register the server a second time.
 3. **Missing tools after installation or authorization.** Use an available, documented
