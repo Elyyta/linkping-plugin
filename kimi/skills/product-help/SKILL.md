@@ -59,6 +59,11 @@ reader to somebody else's workbench. Get it, in this order:
 
 Then:
 
+- Fetch the pages as plain text, not in a browser: `curl -sS <origin>/docs/llms.txt` where
+  there is a shell, otherwise the host's own URL-fetch tool. They are Markdown, and the Codex
+  in-app browser refuses them with `net::ERR_BLOCKED_BY_CLIENT` — that is the browser
+  declining a non-HTML page, not a missing doc, so do not retry it there or report the docs
+  as unreachable.
 - Read `<origin>/docs/llms.txt` first. It is an index — one line per page, with the page's
   one-line description — and it is never itself the answer.
 - Open at most two pages for one question: the owning page, then one more if the first sent
