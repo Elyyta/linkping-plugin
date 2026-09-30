@@ -98,9 +98,9 @@ Do not work around it by reading the repo (see Purpose) or calling the HTTP API 
    refresh tools.
 5. **Open the new conversation yourself.** When installation and authorization are verified
    and only the tools are missing, do not ask the user to open one: a conversation that
-   starts after the install loads the tools. Find the host's `create_thread`,
-   `send_message_to_thread`, `navigate_to_codex_page` and `set_thread_title` through tool
-   discovery. Create the thread in the same project, send the resume prompt as its first
+   starts after the install loads the tools. Codex hides its thread tools until they are
+   searched: call `tool_search` for `create_thread`, `send_message_to_thread`,
+   `navigate_to_codex_page` and `set_thread_title` before deciding they are missing. Create the thread in the same project, send the resume prompt as its first
    message, title it if you can, and move the user there with `navigate_to_codex_page`.
    Do not ask whether to proceed. Report one outcome: started and prompt sent; or not
    started, with the missing tool or error and the resume prompt to paste by hand.
