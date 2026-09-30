@@ -80,7 +80,8 @@ These look like bugs in your browser tool and are not. Do not burn four retries 
 | `400 no_genre` on `get_article_brief` | no house style for that site | pass a genre or pick another site |
 | `404 site_not_found` | that site id is not in the library | re-read `list_sites`; no tool adds a site, the person adds it in the workbench under `/sites` |
 | `409 no_inbox` / `401 inbox_auth` on `find_verification_mail` or `sync_replies` | no mailbox is connected under Preferences, or the connection needs renewing | ask the person to fix it; on a verification mail, try the mailbox in the browser meanwhile |
-| `403 operator_only` on `update_site_facts` | the payload named none of the four columns a member may fill | send only `submitUrl`, `formFields`, `loginRequired`, `captcha`; the rest of a shared row is the operator's |
+| `403 operator_only` on `update_site_facts` | the site catalogue is maintained by the operator; a member key cannot write it | expected with a member key — do not retry; put what the page showed you in the submission's note instead |
+| `400 invalid_submit_url` on `update_site_facts` | the `submitUrl` is not an http(s) URL on the site's own domain (or a sub-domain, or a hosted-form service) | send the URL the form really lives on, on that site; never another domain |
 | `409 duplicate_slug` on `save_product_profile` | that product is already in the workbench — the profile belongs on it | `update_product` with the keys that changed; never create a second product. The same code on `update_product` means the new slug is taken |
 | `422 status_not_settable` on `set_prospect_status` | `new`, `ready` and `queued` are the pipeline's own | use `sent`, `replied`, `won`, `lost` or `skipped` |
 | `422` on `save_draft` | empty or over-long subject or body, a leftover `{{token}}`, or a body far shorter than the rendered email | read the refusal, fix it, save again |
