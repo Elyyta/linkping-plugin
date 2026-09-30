@@ -1,0 +1,4 @@
+interface:
+  display_name: "LinkPing · 产品答疑"
+  short_description: "LinkPing 怎么用、状态什么意思、怎么装怎么更新：都去工作台的 /docs 现查"
+  default_prompt: "LinkPing 里 submitted 和 live 有什么区别？"

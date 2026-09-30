@@ -1,6 +1,6 @@
 {
   "name": "linkping",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Work a LinkPing backlink plan from Cursor or Grok Bot: directory submissions, the copy each form needs, outreach drafts and listing checks.",
   "author": {
     "name": "LinkPing",

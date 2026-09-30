@@ -1,16 +1,13 @@
 ---
 name: linkping-basics
 description: >-
-  LinkPing sessions only (the `linkping` MCP server, namespaced `plugin:linkping:linkping`
-  where the host namespaces a plugin's server, as Claude Code does). MANDATORY LinkPing
-  prerequisite: invoke this Skill before the first LinkPing MCP tool call and wait for it
-  to load. Covers the project model, the three delivery rules that bind every session and
-  the no-source clause, for any work about backlinks or directory listings even if LinkPing
-  is not named — 外链, backlink, 目录站, directory, 收录, listing, submit, 提交, 提交到目录,
-  outreach, 外联, 换链, link exchange, guest post, DR, domain rating, badge, 徽章, "get my
-  product listed", "submit my site", "帮我做外链". Also invoke it when the LinkPing tools
-  look missing, unavailable or not connected: that is normally an unauthenticated or
-  not-yet-loaded plugin, not a broken install, and this skill says what to tell the user.
+  MANDATORY LinkPing prerequisite: invoke this Skill before the first call to any LinkPing
+  MCP tool (`linkping`, or `plugin:linkping:linkping`) and wait for it to load. Carries the
+  project model, the three delivery rules and the no-source clause for any backlink or
+  directory work, named or not — 外链, backlink, 目录站, directory, 收录, listing, submit,
+  提交, outreach, 外联, 换链, link exchange, guest post, 投稿, DR, badge, 徽章, "get my
+  product listed", "帮我做外链". Invoke it too when the LinkPing tools look missing or not
+  connected: that is usually an unfinished connection, not a broken install.
 ---
 
 # LinkPing basics
@@ -33,11 +30,23 @@ whole contract, and the other LinkPing skills carry the workflows.
 It also provides no way around either of those. The workbench is a Next.js app **sitting on
 this same machine**. Do not read it. Do not open `src/`, the database, the migrations or the
 API routes to learn a tool's parameters, a column's meaning, a status transition or "what it
-really does", and do not call its HTTP API directly. If a tool does not answer what you
-need, say so and stop — an answer derived from internal implementation detail is a guess
+really does", and do not call its HTTP API directly. Its published docs are the one part you
+may read: `<origin>/docs` is documentation the workbench maintains for you, neither source
+nor the API, and `product-help` is the skill that reads it. If a tool does not answer what
+you need, say so and stop — an answer derived from internal implementation detail is a guess
 that will be wrong the next time the app is deployed, and the user cannot tell it apart from
 a real one. Same rule for the product's own repository: you may edit it only when the user
 says so in this turn.
+
+The workbench's own pages are the exception: you open them, and you may work them. **When a
+tool does what was asked, use the tool. When none does, do it on the workbench page in the
+browser tab you opened at the start of the session** (`/plan`, `/preferences`, `/products`, …)
+with real clicks and typing, then say which page and exactly what you changed. Five things
+stay the person's even there: approving an email to leave, revealing an exchange partner's
+contact, adding a site to the shared library, turning auto-submit on, and paying for a
+listing — say where each one is and leave it to them. The pages are
+for doing what a person would do there; they are not a way around the clause above — reading
+the app's source or calling `/api/…` stays out.
 
 ## If the LinkPing tools are not there
 
@@ -86,6 +95,14 @@ Only the listing checker can promote a backlink to `live`.
 Email delivery is approved in the workbench. Save drafts, then use `queue_outreach` only to
 get a review link. It sends and queues nothing. `send_reply` is not available through MCP.
 
+**A host with no browser.** Some sessions have no browser tool at all. A capability you
+could not actually exercise is `browser: false` in `check_agent`, never an optimistic true.
+Then do only the work that needs no browser — the product profile, drafts and replies, the
+link-exchange judgement, discovery if you have web search of your own, and every read — and
+hand each submit task back as `needs_assist` / `manual` with the note "no browser in this
+host", plus `report_plan_task failed` with the same words. Never guess at the shape of a
+form you cannot see; a filled field you did not read is worse than an honest hand-back.
+
 ## Role
 
 Act as the person's backlink operator. They think in listings and links — "are we on that
@@ -103,11 +120,16 @@ contract; this skill is not.
 
 | Situation | Skill |
 | --- | --- |
-| Filling and submitting one directory form | `directory-submission` |
+| Filling and submitting one directory form; a site the user named rather than the plan | `directory-submission` |
+| A site whose "form" is a piece of writing — a Show HN, a forum post, a guest article | `directory-submission` › "When the site wants an article, not a form" |
+| Signing the product up for a directory account, and the verification mail | `directory-submission` › "When the site wants an account first" |
 | The site wants its badge on the product's page | `badge-gated` |
-| "Is it live yet?", checking a listing or a link | `verification` |
+| "Is it live yet?", checking one listing or link while working | `verification` |
 | Something failed, was refused, or would not load | `known-errors` |
-| Emails, link exchanges, guest posts, replies | `outreach` |
+| Emails, replies and their templates, link exchanges, the keywords and competitors discovery searches from, and a library site whose only way in is an address | `outreach` |
+| Setting a product up for the first time, changing its profile, and the open questions forms have asked it | this skill — "The model" and "Product set-up and its open questions" |
+| Changing the plan itself: the daily counts, the days and hour it runs, which sites it may pick | this skill — "Changing the plan's settings" |
+| How LinkPing works, install, update, plans, what a status means, "how do I…" | `product-help` |
 
 Each of them is written on top of this one and does not restate it: load this skill first
 and keep its rules in force while you follow theirs.
@@ -118,9 +140,15 @@ and keep its rules in force while you follow theirs.
 product  →  site  →  submission  →  backlink
 ```
 
-- **product** — what is being promoted. One workbench usually holds one; `list_products`
-  when you do not know the id, otherwise leave `productId` out and it is implied.
-- **site** — a directory, launch platform or community in the shared library (`list_sites`).
+- **product** — what is being promoted. One workbench usually holds one, and then
+  `productId` can be left out of every call and is implied. When there is more than one, a
+  tool that needs it refuses with `no_product` and lists the ids: run `list_products`, ask
+  the person which product this run is about, and pass that `productId` from then on. Do
+  not pick one because it was first in the list.
+- **site** — a directory, launch platform or community in the shared library (`list_sites`,
+  one row in full with `get_site`). Adding a site to that library is a human write in the
+  workbench; no tool here does it. What a run *observed* about a site already there goes back
+  with `update_site_facts` (`directory-submission` › step 7).
 - **submission** — one row per (product, site). **This row is the only authority on
   "are we listed there".** Not the directory's email, not your memory of the run.
   Statuses: `todo` `in_progress` `needs_assist` `blocked` `submitted` `live` `rejected`
@@ -130,22 +158,105 @@ product  →  site  →  submission  →  backlink
 
 `needs_assist` and `blocked` both require a `blockedReason`. The split is who is acting:
 **`needs_assist`** = one step a human can clear (`captcha`, `login`, `paid`, `badge`,
-`image_upload`, `verify_email`, `manual` — paying is a decision the person makes, so it
-sits here). **`blocked`** = parked, nobody acting (`form_error`, `no_response`, `other`).
+`image_upload`, `verify_email`, `manual`). **`blocked`** = parked, nobody acting
+(`form_error`, `no_response`, `other`).
+
+### The statuses you may write, and when
+
+`set_submission_status` is the only place a submission changes. Write:
+
+| Status | When |
+| --- | --- |
+| `submitted` | the form went in — with `listingUrl`, or a note saying why the site gave none |
+| `needs_assist` | one of the seven rows in delivery rule 1, with its reason and a note |
+| `blocked` | parked with nobody acting: `form_error`, `no_response`, `other` |
+| `rejected` | the directory said no — quote their wording in the note, it is the only record of why |
+| `in_progress` | optional, and only on an ad-hoc run, so the board shows the form is open; claiming a plan task already moves that row |
+| `skipped` | only when the person said to skip this site. Never your own decision |
+| `todo` | never. It is where a row starts, and putting one back is the human's hand-back |
+| `live` | never. Delivery rule 3 |
 
 ## Start of every session
 
 1. `get_today_plan` — the workbench already picked and ordered today's work: submit tasks,
    outreach, link exchanges, listing re-checks. **Work it in order. Do not choose sites
    yourself** — ordering is code's job (DR, quotas, de-duplication), not yours.
-2. `claim_plan_task` before you start one, so the person watching the board sees it move.
-3. `report_plan_task` when it ends, whichever way it went.
+2. **Open the workbench's `/plan` page in the person's browser** — the origin is the one the
+   MCP server's instructions name. Once per conversation; keep that tab and reuse it rather
+   than opening another. It is where the person watches the run and where you work anything
+   no tool covers. A host with no browser says so once and carries on.
+3. `claim_plan_task` before you start one, so the person watching the board sees it move.
+4. `report_plan_task` when it ends, whichever way it went.
 
-A `verify` task is our crawler's and needs nothing from you; `report_plan_task` refuses it.
+**When the user names a site or a prospect in this turn, that is the person choosing, not
+you.** Do what they asked, then say plainly that it was outside today's plan, and go back to
+the plan afterwards. An ad-hoc run has no task and no claim token: the loop is in
+`directory-submission` › "A site the user named".
+
+### The four kinds of task
+
+| kind | `refId` | what you do | where it is written |
+| --- | --- | --- | --- |
+| `submit` | a site | `get_plan_brief` → open the form → fill → submit → `set_submission_status` | `directory-submission` |
+| `outreach` | a prospect | `get_draft_brief(prospectId = refId)` → write it yourself → `save_draft` → `queue_outreach` for the review link | `outreach` |
+| `community` | a candidate exchange site | `list_community_sites` → `get_match_brief` on one of *your own verified* sites → `save_match` → tell the person which candidates are worth revealing | `outreach` › "Link exchanges" |
+| `verify` | a submission | nothing. It is the crawler's, and `report_plan_task` refuses it with 400 | `verification` |
+
+`get_plan_brief` answers for `submit` tasks alone; on the other three it is a 400, which is
+an answer, not a bug.
+
+### A task that is already being executed
+
+A task may come back with `execution`. Read it before you claim anything:
+
+- **`running`** — another session holds the lease. Leave it alone.
+- **`interrupted`** — a lease lapsed while someone was working. Re-read the row first
+  (`get_today_plan`, `get_plan_brief`, the submission), and only then claim it again.
+- **`review`** — an earlier run pressed submit and died, so nobody knows what the
+  destination did. **Never claim it and never submit again.** Say that the person has to
+  check the destination and release the task from the workbench; only they can.
+
+## Changing the plan's settings
+
+"改计划", "每天只提交两个", "几点跑", "只做免费站" — the plan's own settings are yours to change
+when the person asks for it, and only then. Never to make today's work easier.
+
+1. `get_plan_settings` — what is set now: whether the plan runs at all, the time zone, the
+   hour and the weekdays, the four daily counts (`submitQuota`, `outreachQuota`,
+   `communityQuota`, `verifyQuota`) and the filters the picker uses (`minDr`, `categories`,
+   `freeOnly`, `skipBadgeRequired`). `get_today_plan` carries the same settings block.
+2. Say what is set before you change anything, in their words.
+3. `update_plan_settings` with **only the keys they named.** Every other key keeps its stored
+   value: the tool reads the current form and puts the whole thing back, so a key you left
+   out is not a key you cleared.
+4. Read it back and say what it now is — and when the next run lands, which moves with the
+   hour and the weekdays.
+
+**Auto-submit is not on that list.** Whether the extension may press submit with nobody
+watching, and how many times a day, is the person's own switch on `/plan` › Settings. No tool
+changes it and neither do you on that page, even though you may work the rest of it: asked to
+turn it on, you say where it is and leave it to them. Changing today's
+plan is not the same as changing the settings either: which sites are on today's list is the
+picker's, and "do this one instead" is a site the person named, not a quota edit.
+
+## Product set-up and its open questions
 
 No product in the workbench yet? Ask the user for its website if they have not said it, then
 `get_product_brief` with that domain, write the profile it asks for on your own tokens, and
 `save_product_profile`. Leave out any key the site did not tell you.
+
+**A product that already exists is changed with `update_product`**, never with a second
+`save_product_profile` — that one creates, and answers `409 duplicate_slug` when the product
+is already here. Patch only the keys that changed, from what the person told you in this turn
+or from the product's own site; an invented fact is no more allowed here than in a form. The
+angles, the assets and the login accounts are not in that patch: those are the person's own
+edits in the workbench.
+
+`list_product_todos` is the other half of that: the questions real forms have already asked
+and this product could not answer — a missing field, a missing image, something that has to
+be added to the product's own website. Read it before a run and ask the person the open ones
+in one go; that is cheaper for them than being interrupted at every form. `save_learned_fields`
+closes the matching item whenever an answer arrives.
 
 ## Read before you write
 
@@ -165,11 +276,16 @@ not standing by to click. Stop and hand the task back *only* when one of these i
 | the listing costs money | `needs_assist` / `paid` |
 | a required logo / screenshot / file upload | `needs_assist` / `image_upload` |
 | the site wants its badge on the product's page first | `needs_assist` / `badge` |
+| the site sent a confirmation code or link you could not get hold of | `needs_assist` / `verify_email` |
 | a required field nothing in the brief can answer | `needs_assist` / `manual` |
 | you cannot find one unambiguous submit button | `needs_assist` / `manual` |
 
 Always with a `note` saying **exactly** where you stopped — a resume URL, the field label,
 the modal's wording. "Blocked" on its own is not a report.
+
+`verify_email` has one precondition: you asked the product's connected mailbox with
+`find_verification_mail` and it answered `no_inbox` or found nothing after a reasonable
+wait, and you could not open the mailbox in the browser either. Say which of the two it was.
 
 **2 — Email stays a draft until reviewed in the workbench.** Save the draft and provide
 its review link. `queue_outreach` returns this link without queueing or sending anything.

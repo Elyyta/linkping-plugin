@@ -1,10 +1,12 @@
 ---
 name: verification
 description: >-
-  How a LinkPing listing or backlink is proven to exist, and which half of that is yours.
-  Use for 验证, verify, 检查外链, "is it live yet", "did the link land", "活了吗", 收录了吗,
-  check the listing, check backlinks, live vs submitted, listing status, "confirm they
-  published it". Requires linkping-basics.
+  How a LinkPing listing or backlink is proven to exist, and which half of that is yours —
+  for checking one listing or link while working. Use for 验证, verify, 检查外链, "is it live
+  yet", "did the link land", "活了吗", 收录了吗, check the listing, check backlinks, "confirm
+  they published it". A question about what the statuses themselves mean ("what is the
+  difference between submitted and live", 什么意思) is `product-help`, answered from the
+  workbench's docs. Requires linkping-basics.
 ---
 
 # Verification
@@ -51,6 +53,11 @@ the app's HTTP routes to force one, and do not tell the user you have "verified"
 The honest sentence is: *"submitted and recorded with the listing URL; our check runs daily
 and will flip it to live once the link is there."*
 
+`find_verification_mail` is **not** that tool and has nothing to do with this page: it reads
+the product's connected mailbox for the confirmation code a directory sent while signing an
+account up, and says nothing about whether a listing exists (`directory-submission` › "When
+the site wants an account first").
+
 `get_backlinks` is the read side — every link the product has actually landed, from both
 the directory half and the outreach half, with anchor text where known. A link that is not
 in there has not been proven.
@@ -75,6 +82,8 @@ Say which state each site is in, using the workbench's words, not softer ones:
 
 - **submitted** — the form went in. Not listed yet.
 - **live** — our check found the link. Only the crawler puts a row here.
+- **rejected** — the directory answered and turned us down; the note carries their wording.
+  It is a finished outcome, not something waiting on the crawler.
 - **needs_assist / blocked** — name the reason and what would clear it.
 
 Never summarise a run as "N backlinks built" when what you did was submit N forms.
