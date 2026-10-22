@@ -3,7 +3,7 @@
   "mcpServers": {
     "linkping": {
       "type": "streamable-http",
-      "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "url": "https://getbacklinkai.com/api/mcp",
       "headers": {
         "x-linkping-client": "cursor",
         "x-linkping-surface": "cursor"

@@ -6,7 +6,7 @@
     "name": "LinkPing",
     "url": "https://github.com/Elyyta/linkping-plugin"
   },
-  "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+  "homepage": "https://getbacklinkai.com",
   "repository": "https://github.com/Elyyta/linkping-plugin.git",
   "license": "MIT",
   "keywords": [
@@ -22,8 +22,8 @@
   "mcpServers": {
     "linkping": {
       "type": "http",
-      "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
-      "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "url": "https://getbacklinkai.com/api/mcp",
+      "oauth_resource": "https://getbacklinkai.com/api/mcp",
       "headers": {
         "x-linkping-client": "claude_code",
         "x-linkping-surface": "claude_code"

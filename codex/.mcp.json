@@ -5,8 +5,8 @@
         "x-linkping-client": "codex",
         "x-linkping-surface": "codex"
       },
-      "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
-      "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp"
+      "oauth_resource": "https://getbacklinkai.com/api/mcp",
+      "url": "https://getbacklinkai.com/api/mcp"
     }
   }
 }

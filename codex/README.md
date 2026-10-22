@@ -7,13 +7,13 @@ and the LinkPing skills (each with Codex's `agents/openai.yaml`).
 
 - Codex with plugin support.
 - A LinkPing account with at least one product set up.
-- Network access to `https://backlink-hub-staging.zhengzhongwei888-232.workers.dev`, the only
+- Network access to `https://getbacklinkai.com`, the only
   origin the plugin contacts. No Node installation is needed for this package.
 
 ## Install
 
 ```sh
-codex plugin marketplace add Elyyta/linkping-plugin@staging
+codex plugin marketplace add Elyyta/linkping-plugin@main
 codex plugin add linkping@linkping
 codex mcp login linkping
 ```
@@ -21,7 +21,7 @@ codex mcp login linkping
 Authentication is OAuth in the browser; no key or token lives in this repository. Prefer
 the running host's supported installation and OAuth flow when available; independent CLI
 installation/login may not refresh the desktop runtime. The MCP endpoint is
-`https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp`.
+`https://getbacklinkai.com/api/mcp`.
 
 ## Verify
 

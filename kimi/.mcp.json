@@ -3,8 +3,8 @@
     "linkping": {
       "transport": "http",
       "auth": "oauth",
-      "url": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
-      "oauth_resource": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp",
+      "url": "https://getbacklinkai.com/api/mcp",
+      "oauth_resource": "https://getbacklinkai.com/api/mcp",
       "http_headers": {
         "x-linkping-client": "kimi_work",
         "x-linkping-surface": "kimi_work"

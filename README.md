@@ -12,8 +12,8 @@ data, no credentials.
 
 | Host | Package | Install |
 | --- | --- | --- |
-| Claude Code | `claude/` | `claude plugin marketplace add https://github.com/Elyyta/linkping-plugin.git#staging` then `claude plugin install linkping@linkping` |
-| Codex | `codex/` | `codex plugin marketplace add Elyyta/linkping-plugin@staging` then `codex plugin add linkping@linkping`, `codex mcp login linkping` |
+| Claude Code | `claude/` | `claude plugin marketplace add https://github.com/Elyyta/linkping-plugin.git#main` then `claude plugin install linkping@linkping` |
+| Codex | `codex/` | `codex plugin marketplace add Elyyta/linkping-plugin@main` then `codex plugin add linkping@linkping`, `codex mcp login linkping` |
 | Cursor, Grok Bot | `cursor/` | Plugins screen → Add → Authorize ([details](./cursor/README.md)) |
 | Kimi Work | `kimi/` | Import the package, Login on the connector card ([details](./kimi/README.md)) |
 
@@ -36,7 +36,7 @@ The two marketplace entries at the root are `.claude-plugin/marketplace.json` fo
 Every package points at the same endpoint and authenticates over OAuth in the browser:
 
 ```text
-https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp
+https://getbacklinkai.com/api/mcp
 ```
 
 Dynamic client registration and PKCE; the server derives the member from the token. No API key,
@@ -53,19 +53,19 @@ remove the plugin or log out in the host itself (`claude mcp remove linkping`,
 The workbench serves an agent-executable runbook per host. Give the agent the URL for your host
 and ask it to install LinkPing; it reads the whole guide before running anything.
 
-- Claude Code — [`/agent/setup?agent=claude-code`](https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/agent/setup?agent=claude-code)
-- Codex — [`/agent/setup?agent=codex`](https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/agent/setup?agent=codex)
-- Cursor, Grok Bot — [`/agent/setup?agent=cursor`](https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/agent/setup?agent=cursor)
-- Kimi Work — [`/agent/setup?agent=kimi`](https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/agent/setup?agent=kimi)
+- Claude Code — [`/agent/setup?agent=claude-code`](https://getbacklinkai.com/agent/setup?agent=claude-code)
+- Codex — [`/agent/setup?agent=codex`](https://getbacklinkai.com/agent/setup?agent=codex)
+- Cursor, Grok Bot — [`/agent/setup?agent=cursor`](https://getbacklinkai.com/agent/setup?agent=cursor)
+- Kimi Work — [`/agent/setup?agent=kimi`](https://getbacklinkai.com/agent/setup?agent=kimi)
 
 On Cursor, Grok Bot and Kimi Work the agent cannot install anything itself; those guides have it
 walk you through the host's Plugins screen and then verify the connection from its side.
 
 ## Branches
 
-`staging` points at the staging deployment. There is no production deployment yet, so there is
-deliberately no `main` branch and no production URL anywhere in this repository — `homepage` in
-every manifest is the staging origin. Install with `…#staging` until one exists.
+`main` points at production (https://getbacklinkai.com); `staging` points at the staging
+deployment. The two branches differ only in the workbench origin in the manifests and READMEs.
+Install from the branch that matches the workbench you sign in to.
 
 ## Example prompts
 

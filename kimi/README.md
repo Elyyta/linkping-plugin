@@ -13,7 +13,7 @@ listing is live, and it never sends email.
 
 - A Kimi Work account that can install a plugin package.
 - A LinkPing account with at least one product set up, so the directory copy exists.
-- Network access to `https://backlink-hub-staging.zhengzhongwei888-232.workers.dev`. That origin
+- Network access to `https://getbacklinkai.com`. That origin
   is the only one the plugin contacts.
 - No Node installation is required: this package is manifests and Markdown.
 
@@ -31,7 +31,7 @@ configuration into Kimi.
 - Entry point: `kimi.plugin.json`; all skills live under `skills/`.
 - Compatibility copy of the connection: `.mcp.json`.
 - Endpoint and OAuth resource:
-  `https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp`.
+  `https://getbacklinkai.com/api/mcp`.
 - Attribution headers: `x-linkping-client: kimi_work`, `x-linkping-surface: kimi_work`.
 - There is deliberately no `.app.json`: that file carries an app id Kimi issues on registration,
   and this package has not been registered with Kimi yet. This package has also not yet been

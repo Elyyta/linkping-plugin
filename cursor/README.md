@@ -13,7 +13,7 @@ listing is live, and it never sends email.
 
 - A Cursor or Grok Bot account with plugin access.
 - A LinkPing account with at least one product set up, so the directory copy exists.
-- Network access to `https://backlink-hub-staging.zhengzhongwei888-232.workers.dev`. That origin
+- Network access to `https://getbacklinkai.com`. That origin
   is the only one the plugin contacts.
 - A browser the host can drive, if you want the agent to submit forms rather than only prepare
   them. No Node installation is required: this package is manifests and Markdown.
@@ -31,7 +31,7 @@ listing is live, and it never sends email.
 The plugin connects to:
 
 ```text
-https://backlink-hub-staging.zhengzhongwei888-232.workers.dev/api/mcp
+https://getbacklinkai.com/api/mcp
 ```
 
 Authentication is OAuth in the browser, with dynamic client registration and PKCE; the server

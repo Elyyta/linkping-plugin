@@ -6,7 +6,7 @@
     "name": "LinkPing",
     "url": "https://github.com/Elyyta/linkping-plugin"
   },
-  "homepage": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+  "homepage": "https://getbacklinkai.com",
   "repository": "https://github.com/Elyyta/linkping-plugin.git",
   "license": "MIT",
   "keywords": [
@@ -31,7 +31,7 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://backlink-hub-staging.zhengzhongwei888-232.workers.dev",
+    "websiteURL": "https://getbacklinkai.com",
     "defaultPrompt": [
       "用 LinkPing 准备今天的外链计划",
       "用 LinkPing 把我的产品提交到今天计划里的目录站",
