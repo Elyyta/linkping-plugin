@@ -54,7 +54,7 @@ Press it. That is the whole job on those sites.
 
 ### 4. The badge is not on the product's page yet
 
-**Placing it is not yours to do through LinkPing.** There is no tool here that edits the
+**Placing it is not yours to do through GetBacklink AI.** There is no tool here that edits the
 product's website. Stop:
 
 ```

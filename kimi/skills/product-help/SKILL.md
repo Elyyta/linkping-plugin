@@ -1,7 +1,7 @@
 ---
 name: product-help
 description: >-
-  Questions about LinkPing itself rather than the user's rows: how it works, what a status
+  Questions about GetBacklink AI itself rather than the user's rows: how it works, what a status
   means, how to install, update or revoke it, what is in this build. Use for 怎么用, 怎么安装, 怎么更新, 怎么取消授权, 什么意思, 有没有, 多少钱, 有套餐吗,
   "how do I…", "what does submitted mean", "is X supported", "do I need to update", pricing
   and plans, and questions about a host other than this one. Answers are read from the
@@ -27,7 +27,7 @@ you did not open.
 | The question is about | Answer from |
 | --- | --- |
 | a row this workbench holds — a product, today's plan, one submission, a draft, a prospect, a backlink | the matching read tool (`list_products`, `get_today_plan`, `list_sites`, `get_draft`, `get_backlinks`, …). No docs lookup at all |
-| what LinkPing is, the model, who writes which status | `/docs/overview` |
+| what GetBacklink AI is, the model, who writes which status | `/docs/overview` |
 | today's plan: how it is built, what a task kind means | `/docs/plan` |
 | directory forms, hand-backs, consent boxes, badge-gated sites | `/docs/submissions` |
 | prospects, contacts, drafts, replies, link exchanges | `/docs/outreach` |
@@ -51,7 +51,7 @@ The docs live on the workbench this conversation is connected to. This file does
 origin — a generated skill that hard-coded one deployment's domain would send every other
 reader to somebody else's workbench. Get it, in this order:
 
-1. The LinkPing server's own instructions in this conversation name `<origin>/docs/llms.txt`
+1. The GetBacklink AI server's own instructions in this conversation name `<origin>/docs/llms.txt`
    outright. Use that.
 2. Otherwise take the origin of the registered MCP server URL, the one ending in `/api/mcp`.
    The host prints it when it lists the server; `linkping-basics` names that command for this
@@ -112,7 +112,7 @@ one you are in off your own tool namespace (Claude Code namespaces the server
 ## Answering rules
 
 - **This build has no plans, credits, quotas, payments or billing.** Nothing is metered and
-  there is no tier to buy. The model tokens are the user's own agent subscription — LinkPing
+  there is no tier to buy. The model tokens are the user's own agent subscription — GetBacklink AI
   never runs a model and never charges for one. Say that plainly. Do not describe a pricing
   page, a free tier or an upgrade that does not exist, and do not treat a question about
   money as evidence that one does.
