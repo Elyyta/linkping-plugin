@@ -1,7 +1,7 @@
 ---
 name: verification
 description: >-
-  How a LinkPing listing or backlink is proven to exist, and which half of that is yours —
+  How a GetBacklink AI listing or backlink is proven to exist, and which half of that is yours —
   for checking one listing or link while working. Use for 验证, verify, 检查外链, "is it live
   yet", "did the link land", "活了吗", 收录了吗, check the listing, check backlinks, "confirm
   they published it". A question about what the statuses themselves mean ("what is the
@@ -48,7 +48,7 @@ So when you record a submission:
 
 ## You cannot run the crawler from here
 
-There is no LinkPing tool that triggers a listing check. Do not look for one, do not call
+There is no GetBacklink AI tool that triggers a listing check. Do not look for one, do not call
 the app's HTTP routes to force one, and do not tell the user you have "verified" anything.
 The honest sentence is: *"submitted and recorded with the listing URL; our check runs daily
 and will flip it to live once the link is there."*

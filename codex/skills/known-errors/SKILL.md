@@ -1,7 +1,7 @@
 ---
 name: known-errors
 description: >-
-  Diagnosing LinkPing failures — refused tool calls, blocked directory pages, forms that
+  Diagnosing GetBacklink AI failures — refused tool calls, blocked directory pages, forms that
   will not accept input, and pages that never load. Use for 报错, error, 打不开, 被拦, blocked,
   Cloudflare, captcha, 验证码, 登录墙, sign-in wall, 403, 429, 500, "the tool failed",
   "it won't let me submit", "not_implemented_yet", "listing_url_required", "task_busy",
@@ -59,11 +59,11 @@ These look like bugs in your browser tool and are not. Do not burn four retries 
 - Drive the page with real clicks and real typing. Synthetic click events are how these
   failures started.
 
-## Tool errors from LinkPing itself
+## Tool errors from GetBacklink AI itself
 
 | Error | What it means | Do |
 | --- | --- | --- |
-| tools missing / not connected | the connection was never finished — almost never a broken install | `linkping-basics` › "If the LinkPing tools are not there" has this host's ladder; walk it, then stop |
+| tools missing / not connected | the connection was never finished — almost never a broken install | `linkping-basics` › "If the GetBacklink AI tools are not there" has this host's ladder; walk it, then stop |
 | `not_implemented_yet` | that route is not in this build of the workbench | say which tool, do not work around it |
 | `invalid_arguments` | an argument is missing, empty or the wrong type; the message names it | read the tool's schema and fix the call — the same call fails the same way |
 | `no_product` naming several ids | this workbench holds more than one product and nothing said which | ask the person which product, then pass `productId` on every call in the run |

@@ -2,11 +2,11 @@
 name: directory-submission
 description: >-
   How to get one product listed on one directory: open the form, map its controls to the
-  copy LinkPing rendered, fill it, press submit, and record the outcome. Covers signing the
+  copy GetBacklink AI rendered, fill it, press submit, and record the outcome. Covers signing the
   product up for an account, and sites whose "form" is a piece of writing. Use for 提交到,
   submit to a directory, 填表, fill this form, "add my product to X", "list us on X",
   launch platforms, 收录, 注册账号, sign up, 投稿, guest post, and for working through the
-  submit tasks on today's LinkPing plan. Requires linkping-basics.
+  submit tasks on today's GetBacklink AI plan. Requires linkping-basics.
 ---
 
 # Submitting one directory form
@@ -37,7 +37,7 @@ Two things it deliberately does not carry:
   `get_site_login(siteId)`, which tells you the method, the account and how to handle the
   verification mail. If your browser tool refuses to type passwords, stop:
   `needs_assist` / `login`, naming the account. The whole sign-up path is below.
-- **any freshly written copy.** No model runs on the LinkPing side. Text the templates
+- **any freshly written copy.** No model runs on the GetBacklink AI side. Text the templates
   cannot produce is yours to write, on your tokens — and only from facts you were given.
 
 If `site.submitUrl` is null, find the "submit", "add your product" or "suggest a site" link
@@ -134,7 +134,7 @@ already. It also closes the matching item on the product's to-do list, which is 
 
 ### 7. `update_site_facts` — only when your key is an operator's
 
-The site catalogue is maintained by LinkPing's operator; members read it and do not write it.
+The site catalogue is maintained by GetBacklink AI's operator; members read it and do not write it.
 With an ordinary member key this call answers `403 operator_only` every time — that is the
 expected answer, not a failure: do not retry it and do not report it as a problem. What the
 page showed you (the real submit URL, a login wall, a captcha) goes into the submission's
@@ -185,7 +185,7 @@ list_sites(q='X') → get_site(siteId) → get_copy(siteId) → [get_site_login]
 - Nothing is reported at the end, because there was no plan task to close.
 
 **A site that is not in the library at all**: no tool here adds one. The site catalogue is
-maintained by LinkPing's operator, not by members, so say that the site is not in the
+maintained by GetBacklink AI's operator, not by members, so say that the site is not in the
 catalogue, and offer what `list_sites` does hold for the same job instead of inventing a row.
 
 ## When the site wants an account first
@@ -227,7 +227,7 @@ catalogue, and offer what `list_sites` does hold for the same job instead of inv
 ## When the site wants an article, not a form
 
 Blog platforms, dev platforms, forums and media sites take a piece of writing instead of a
-form. The copy pack has no article in it and no model runs on the LinkPing side, so the
+form. The copy pack has no article in it and no model runs on the GetBacklink AI side, so the
 writing is yours, on your tokens:
 
 ```

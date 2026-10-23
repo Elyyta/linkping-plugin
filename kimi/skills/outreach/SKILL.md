@@ -1,7 +1,7 @@
 ---
 name: outreach
 description: >-
-  Email outreach and link exchanges in LinkPing: the keywords discovery searches from,
+  Email outreach and link exchanges in GetBacklink AI: the keywords discovery searches from,
   finding prospects, picking an address, drafting, blocking a domain, and stopping before
   anything is sent. Use for 外联, outreach, 发邮件, cold email, email a site, 换链,
   link exchange, 互换链接, guest post, 投稿, prospects, 线索, contacts, 找邮箱, find an email,
@@ -98,7 +98,7 @@ nothing. It selects the best **published** address and checks the domain for mai
 
 `get_draft_brief(prospectId)` hands back the template rendered with everything we hold, the
 page being pitched and what it is about, plus `schema` — the shape your answer must take —
-and `discipline`. **No model runs on the LinkPing side; the wording is yours, on your
+and `discipline`. **No model runs on the GetBacklink AI side; the wording is yours, on your
 tokens.** The claims are not: every fact about the product must come from the brief.
 
 A draft that is already queued is refused. `unqueue_outreach` first, or the sender may pick
@@ -115,7 +115,19 @@ there will not be one.** This is where you stop by default.
 `list_templates` is where a `templateId` comes from: this product's templates with their ids
 and their subjects, the default one first. Without one the brief renders the default, which
 is right most of the time — name a template when the person asked for that kind of mail
-("the guest-post one"), not because you preferred its wording.
+("the short one"), not because you preferred its wording.
+
+Every prospect asks for one of two things — its `intent`: `link` (add the product to a page
+that already exists) or `article` (pitch a guest article). The brief, the template and the
+rewrite rules all follow it, so read `intent` on the prospect before you write: an article
+pitch asks an editor whether a piece would be welcome and never claims the piece exists. A
+template has an `intent` too, and naming one from the other side is refused with 409
+`template_intent_mismatch` — pick one that matches, or name none. `set_prospect_pitch`
+changes the intent (only while the prospect is `new` or `ready`; 409 `intent_locked` after)
+and holds the pre-filled content: `targetUrl`, `anchorText`, and for an article
+`articleTitle` and `articleSummary`. Set those when the person told you what to pitch; left
+empty, the topic is yours to propose from the brief. Changing them rewrites no existing
+draft — brief and save again.
 
 Research you did while writing an email is not a knowledge entry. `add_knowledge` is the
 article writer's store (`directory-submission` › "When the site wants an article, not a
