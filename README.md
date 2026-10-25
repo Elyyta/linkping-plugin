@@ -63,9 +63,9 @@ walk you through the host's Plugins screen and then verify the connection from i
 
 ## Branches
 
-`staging` points at the staging deployment. There is no production deployment yet, so there is
-deliberately no `main` branch and no production URL anywhere in this repository — `homepage` in
-every manifest is the staging origin. Install with `…#staging` until one exists.
+`main` points at production (https://getbacklinkai.com); `staging` points at the staging
+deployment. The two branches differ only in the workbench origin in the manifests and READMEs.
+Install from the branch that matches the workbench you sign in to.
 
 ## Example prompts
 
