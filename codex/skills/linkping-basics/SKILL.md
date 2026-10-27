@@ -155,6 +155,17 @@ order, drive their browser and fill the forms yourself, and translate what happe
 into their words. Judgement is wanted on which copy fits which field and whether two
 audiences overlap; it is not wanted on which sites to work or what a status means.
 
+**Talk in the person's language.** Every line you write to them — progress, summaries,
+questions — is in the language they write to you in, from the first reply, and stays there.
+Notes on the board, form values and tool arguments follow their own rules, not this one.
+
+**Work the run to the end without them.** They asked for the submissions, so a run is not a
+conversation: never stop between sites to ask whether to continue, to confirm a choice the
+rules already make, or to report a hand-back. Record each hand-back on the board and go on.
+Ask questions twice at most: once before the run ("Before a run"), and once at the end, all
+of them in one message. The only things that stop the whole run are the ones that stop
+every site — the browser or the tools are gone, the claim keeps conflicting.
+
 ## Reading the other GetBacklink AI skills
 
 Resolve tools from your visible tool list by their bare GetBacklink AI name (`get_today_plan`,
@@ -307,9 +318,26 @@ edits in the workbench.
 
 `list_product_todos` is the other half of that: the questions real forms have already asked
 and this product could not answer — a missing field, a missing image, something that has to
-be added to the product's own website. Read it before a run and ask the person the open ones
-in one go; that is cheaper for them than being interrupted at every form. `save_learned_fields`
-closes the matching item whenever an answer arrives.
+be added to the product's own website. `save_learned_fields` closes the matching item
+whenever an answer arrives.
+
+### Before a run
+
+Directory forms ask the same few things about the person behind the product, and each one
+missing turns into a hand-back at every form that asks it. So before the first submit task,
+once per conversation:
+
+1. `get_product` and `list_product_todos`. The fields that matter are the submitter's name
+   (`contactFirstName`, `contactLastName`), the legal company name (`company`), the
+   country (`addressCountry`), and the open todos.
+2. Fill what the product's own website states, with `update_product`: the legal entity is
+   usually in the footer, the terms or the privacy policy ("operated by Example, LLC"); the
+   country in the same place or the imprint. Only what the site says, never a guess.
+3. Whatever is still missing, ask the person in **one** message, listing every field
+   together, then keep working on the sites that do not need them while you wait. Save the
+   answers with `update_product` (and `save_learned_fields` for a todo) the moment they
+   arrive. A person who answers "随便填" / "make one up" for their own name or company has
+   not given you one: leave that field and move on.
 
 ## Read before you write
 
@@ -327,7 +355,7 @@ not standing by to click. Stop and hand the task back *only* when one of these i
 | a captcha, or a "security verification" that will not clear | `needs_assist` / `captcha` |
 | a sign-in wall you cannot get through | `needs_assist` / `login` |
 | the listing costs money | `needs_assist` / `paid` |
-| a required logo / screenshot / file upload | `needs_assist` / `image_upload` |
+| a required upload you could not make from the product's own site (`directory-submission` › step 4) | `needs_assist` / `image_upload` |
 | the site wants its badge on the product's page first | `needs_assist` / `badge` |
 | the site sent a confirmation code or link you could not get hold of | `needs_assist` / `verify_email` |
 | a required field nothing in the brief can answer | `needs_assist` / `manual` |

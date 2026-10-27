@@ -74,6 +74,15 @@ yours.** Two rules the answer repeats and that matter more than anything else he
 A required field with no candidate and no answer from the human is a stop:
 `needs_assist` / `manual`, naming the field label in the note.
 
+Most of those stops are the same few questions about the person behind the product — the
+submitter's name, the company's legal name, its country — and they should never reach a
+form unanswered: `linkping-basics` › "Before a run" collects them once, up front. A form
+that still finds one missing does not pause the run to ask: hand that one site back, keep
+going, and put the question in the end-of-run summary. A field that is optional or that only
+narrows a choice (a budget range, "how did you hear about us", a company-type radio with an
+"other" option) is not a required fact: leave it empty or pick the neutral option, and say
+which in the note.
+
 ### 4. Typing into controls that fight back
 
 These are the shapes that have actually cost runs here:
@@ -86,16 +95,50 @@ These are the shapes that have actually cost runs here:
   **full-resolution** screenshot and click the option's real coordinates; arithmetic on a
   scaled screenshot lands one row off.
 - **A markdown editor** — auto-continues `- ` lists. Type plain paragraphs, no list markers.
-- **A required logo or screenshot upload** — a file is not something you can type, so this
-  is `needs_assist` / `image_upload`. Before you stop, `list_product_assets` says whether the
-  product even has an icon, a screenshot or a cover on file, and the note should say which of
-  the two jobs it is: "icon and screenshot are on file, they need uploading by hand" and
-  "nothing on file, one has to be made first" are different days for the person.
+- **A required logo or screenshot upload** — make the file yourself from the product's own
+  website, once per run, and upload it with your browser tool's file upload. It is the
+  product's own published material, not an invented fact:
+  - *screenshot / cover / "tool image"* — the homepage's `og:image` (usually 1200×630, which
+    is what most directories ask for), else a screenshot of the homepage at 1280×800 taken in
+    a tab that is **not** signed in to the product, so no avatar or account menu shows;
+  - *logo / icon* — `apple-touch-icon`, else the largest `icon` link, else the logo `<img>`
+    in the header; a square PNG of at least 128px.
+  Check `list_product_assets` first and prefer what is on file. Keep the files in your
+  scratchpad and reuse them for every later form. `needs_assist` / `image_upload` is only for
+  an upload you could not make that way (the site wants a video, a specific size you cannot
+  produce, or the upload control rejects every file) — and the note says which.
 - **Drive the browser with real clicks and typing**, not synthetic click events.
 
 ### 5. Submit, then record — in that order, and record honestly
 
+**Before you press it, take the page's dialogs away.** A directory that answers with
+`alert()` or `confirm()` freezes a browser-automation session until a person clicks the
+dialog, which is exactly the person this run is meant to spare. If your browser tool can run
+script in the page, replace them first, so their text is kept instead of shown:
+
+```js
+window.__lpDialogs = [];
+window.alert = (m) => { window.__lpDialogs.push(String(m)); };
+window.confirm = (m) => { window.__lpDialogs.push(String(m)); return true; };
+window.prompt = (m) => { window.__lpDialogs.push(String(m)); return null; };
+```
+
+`confirm` answers yes because the only confirm you will meet after pressing your own submit
+is "submit this?". Read `window.__lpDialogs` afterwards — it is the site's answer, and it goes
+in the note like any confirmation screen. A page that navigates loses the override, so set
+it again on every page you submit from.
+
 Press submit yourself. Then read the confirmation page and write down what it said.
+
+**"Nothing happened" needs checking before it is an outcome.** Before you write `blocked` /
+`no_response`, wait a few seconds and look at all of these: the page text again (toasts
+vanish; scroll to the form, where inline errors and success banners land), the URL (a
+redirect to a thank-you or sign-in page is an answer), `window.__lpDialogs`, the network
+requests the submit made and their status if your tool can read them (a 2xx on the form's
+POST is a submission; a 4xx with an error body is a `form_error` you can usually fix and
+press again, since nothing went in), and `find_verification_mail` for a confirmation mail.
+Only when none of them says anything is it `no_response`. A sign-in page after submit is
+`needs_assist` / `login`, not `no_response`.
 
 ```
 set_submission_status(siteId, status='submitted', listingUrl=…, note=…)
@@ -263,6 +306,10 @@ list_articles → [list_knowledge] → get_article_brief(siteId) → you write i
   itself (`update_product`), and nothing you could not source belongs in either.
 
 ## Before you move to the next site
+
+Move on without asking. The person asked for submissions, not for a conversation per site:
+a hand-back is recorded on the board and the run continues with the next task. Questions
+for the person wait for the end of the run, and go out together in one message.
 
 Say what happened in one line per site, with the blocked ones named and why. A run that
 reports "5 sites submitted" while 2 of them silently ended in `needs_assist` is a wrong
